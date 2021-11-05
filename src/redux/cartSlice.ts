@@ -19,11 +19,13 @@ const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
+        console.log(state)
       const existingCartItemsIndex = state.findIndex((item) => item.id === action.payload);
       if (state[existingCartItemsIndex].quantity > 1) {
-        state[existingCartItemsIndex].quantity -= -1
+        state[existingCartItemsIndex].quantity -= 1
       } else {
-        return state.filter(item => item.id !== action.payload.id)
+        const index = state.findIndex((item) => item.id === action.payload);
+        state.splice(index, 1);
       }
     },
   },

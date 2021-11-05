@@ -55,28 +55,37 @@ const CartItems = () => {
                   <TableCell align="right">{item.title}</TableCell>
                   <TableCell align="right">
                     <div
+                    style={{cursor: "pointer"}}
                       className="arrow"
                       onClick={() => addCartItems(item)}
                     >
-                      &#10094;
+                     +
                     </div>
                     {item.quantity}
                     <div
+                    style={{cursor: "pointer"}}
                       className="arrow"
                       onClick={() => removeCartItems(item.id)}
                     >
-                      &#10095;
+                     -
                     </div>
                   </TableCell>
                   <TableCell align="right">{item.amount}</TableCell>
+                  <TableCell align="right">                    <div
+                    style={{cursor: "pointer"}}
+                      className="arrow"
+                      onClick={() => removeCartItems(item.id)}
+                    >
+                     *
+                    </div></TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-          <h2>Total: N {getTotal()}</h2>
+          <h2 >Total: N {getTotal()}</h2>
         </TableContainer>
       ) : (
-        <h1>Cart is Empty</h1>
+        <h1 style={{color: "white"}}>Cart is Empty</h1>
       )}
     </>
   );

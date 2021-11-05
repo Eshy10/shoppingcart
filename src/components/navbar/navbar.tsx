@@ -143,7 +143,7 @@ const  Navbar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Link to="/carts">
+              <Link to="/cart">
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={getItemsCount()} color="error">
                 <LocalGroceryStoreIcon color='secondary' />
