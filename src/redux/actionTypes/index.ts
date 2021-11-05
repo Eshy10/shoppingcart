@@ -1,5 +1,5 @@
 export interface DataList {
-    id: string,
+    id: number,
     image: string,
     title: string,
     amount: number,

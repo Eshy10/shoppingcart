@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { useAppSelector } from '../../redux/hooks';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,12 +11,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
-const  PrimarySearchAppBar = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+const  Navbar = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -79,7 +81,7 @@ const  PrimarySearchAppBar = () => {
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            <MailIcon />
+            <LocalGroceryStoreIcon />
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -111,6 +113,13 @@ const  PrimarySearchAppBar = () => {
     </Menu>
   );
 
+  const cart = useAppSelector(state => state.cart)
+
+   // Getting the count of items
+   const getItemsCount = () => {
+    return cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -134,11 +143,13 @@ const  PrimarySearchAppBar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <Link to="/carts">
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
+              <Badge badgeContent={getItemsCount()} color="error">
+                <LocalGroceryStoreIcon />
               </Badge>
             </IconButton>
+            </Link>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
@@ -180,4 +191,4 @@ const  PrimarySearchAppBar = () => {
   );
 }
 
-export default PrimarySearchAppBar;
+export default Navbar;
