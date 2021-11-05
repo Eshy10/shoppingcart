@@ -85,7 +85,7 @@ const CartItems = () => {
           <h2 >Total: N {getTotal()}</h2>
         </TableContainer>
       ) : (
-        <h1 style={{color: "white"}}>Cart is Empty</h1>
+        <h1 style={{color: "white", textAlign: "center"}}>Cart is Empty</h1>
       )}
     </>
   );
