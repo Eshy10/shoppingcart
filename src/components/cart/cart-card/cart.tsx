@@ -1,3 +1,5 @@
+import { useAppDispatch } from "../../../redux/hooks";
+import { addToCart } from "../../../redux/cartSlice";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -5,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-type ProductList = {
+ type ProductList = {
     items: {
         id: number,
         image: string,
@@ -15,6 +17,12 @@ type ProductList = {
 }
 
 const ItemCard = ({items}: ProductList) => {
+    const dispatch = useAppDispatch();
+
+    const addCartItems = (item: typeof items) => {
+      dispatch(addToCart(item));
+    };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -32,7 +40,7 @@ const ItemCard = ({items}: ProductList) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Add to Cart</Button>
+        <Button onClick={() => addCartItems(items)} size="small">Add to Cart</Button>
       </CardActions>
     </Card>
   );

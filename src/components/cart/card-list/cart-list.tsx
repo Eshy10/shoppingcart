@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../redux/hooks';
 const ItemList = () => {
     const products = useAppSelector(state => state.products)
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box marginTop={"2rem"} paddingLeft={"1rem"} paddingRight={"1rem"} sx={{ flexGrow: 1 }}>
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {products.map((item) => (
           <Grid item xs={2} sm={4} md={4} key={item.id}>

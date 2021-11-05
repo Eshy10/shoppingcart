@@ -1,5 +1,6 @@
 import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
 import { addToCart, removeFromCart } from "../../../redux/cartSlice";
+import { DataList } from "../../../redux/actionTypes"
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -13,8 +14,8 @@ const CartItems = () => {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
-  const addCartItems = (id: number) => {
-    dispatch(addToCart(id));
+  const addCartItems = (item: DataList) => {
+    dispatch(addToCart(item));
   };
 
   const removeCartItems = (id: number) => {
@@ -55,7 +56,7 @@ const CartItems = () => {
                   <TableCell align="right">
                     <div
                       className="arrow"
-                      onClick={() => addCartItems(item.id)}
+                      onClick={() => addCartItems(item)}
                     >
                       &#10094;
                     </div>
